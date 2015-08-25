@@ -1,0 +1,73 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    android:shrinkColumns="*">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer1"
+            android:src="@mipmap/ic_strawberry"
+            android:soundEffectsEnabled="true"/>
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer2"
+            android:src="@mipmap/ic_strawberry" />
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer3"
+            android:src="@mipmap/ic_strawberry" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer4"
+            android:src="@mipmap/ic_strawberry" />
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer5"
+            android:src="@mipmap/ic_strawberry"/>
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer6"
+            android:src="@mipmap/ic_strawberry"
+            android:layout_width="wrap_content" />
+
+     </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer7"
+            android:src="@mipmap/ic_strawberry" />
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer8"
+            android:src="@mipmap/ic_strawberry"/>
+
+        <ImageButton
+            style="@style/OptionImageButton"
+            android:id="@+id/answer9"
+            android:src="@mipmap/ic_strawberry"/>
+
+    </TableRow>
+</TableLayout>

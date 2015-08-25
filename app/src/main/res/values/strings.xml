@@ -1,0 +1,299 @@
+<resources>
+    <string name="app_name">LogicGame</string>
+
+    <string name="ok">OK</string>
+    <string name="result_dialog_success_title">ЗДОРОВО</string>
+    <string name="result_dialog_failed_title">Уппс... Попробуй еще</string>
+    <string name="result_dialog_very_failed_title">Ха Ха Ха</string>
+    <string name="result_dialog_very_success_title">Ооооо...</string>
+
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_quiz">QuizActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_story">StoryActivity</string>
+
+    <string name="start">Начать игру</string>
+    <string name="easy">Легко</string>
+    <string name="normal">Средне</string>
+    <string name="hard">Сложно</string>
+    <string name="score_separator">|</string>
+
+
+    <string name="task_question_solve_expression">Реши пример</string>
+    <string name="task_question_read_and_find_shape">Найди  фигуру соответсвующую надписи</string>
+    <string name="task_question_find_words_from_category">Найди все слова из категории</string>
+
+    <string name="material_color">цвет</string>
+    <string name="material_red">красный</string>
+    <string name="material_purple">фиолетовый</string>
+    <string name="material_blue">синий</string>
+    <string name="material_light_blue">голубой</string>
+    <string name="material_green">зелёный</string>
+    <string name="material_yellow">желтый</string>
+    <string name="material_orange">ораньжевый</string>
+    <string name="material_brown">коричневый</string>
+    <string name="material_grey">серый</string>
+
+    <string name="material_shape">фигура</string>
+    <string name="material_shape_circle">круг</string>
+    <string name="material_shape_square">квадрат</string>
+    <string name="material_shape_oval">овал</string>
+    <string name="material_shape_triangle">треугольник</string>
+
+    <string name="material_tableware">посуда</string>
+    <string name="material_tableware_plate">тарелка</string>
+    <string name="material_tableware_bowl">миска</string>
+    <string name="material_tableware_cup">чашка</string>
+    <string name="material_tableware_mug">кружка</string>
+    <string name="material_tableware_fork">вилка</string>
+    <string name="material_tableware_knife">нож</string>
+    <string name="material_tableware_glass">стакан</string>
+    <string name="material_tableware_saucepan">кастрюля</string>
+    <string name="material_tableware_jug">кувшин</string>
+    <string name="material_tableware_teapot">чайник</string>
+    <string name="material_tableware_coffeepot">кофейник</string>
+    <string name="material_tableware_pan">сковорода</string>
+    <string name="material_tableware_bottle">бутылка</string>
+    <string name="material_tableware_lid">крышка</string>
+
+    <string name="material_clothes">одежда</string>
+    <string name="material_clothes_skirt">юбка</string>
+    <string name="material_clothes_dress">платье</string>
+    <string name="material_clothes_blouse">блузка</string>
+    <string name="material_clothes_trousers">штаны</string>
+    <string name="material_clothes_socks">носки</string>
+    <string name="material_clothes_tights">колготки</string>
+    <string name="material_clothes_swimsuit">купальник</string>
+    <string name="material_clothes_sweater">свитер</string>
+    <string name="material_clothes_shorts">шорты</string>
+    <string name="material_clothes_jeans">джинсы</string>
+    <string name="material_clothes_T_shirt">футболка</string>
+    <string name="material_clothes_hat">шляпа</string>
+    <string name="material_clothes_jacket">куртка</string>
+    <string name="material_clothes_fur_coat">шуба</string>
+    <string name="material_clothes_coat">пальто</string>
+    <string name="material_clothes_raincoat">плащ</string>
+    <string name="material_clothes_gloves">перчатки</string>
+    <string name="material_clothes_scarf">шарф</string>
+    <string name="material_clothes_cardigan">кофта</string>
+    <string name="material_clothes_belt">ремень</string>
+
+    <string name="material_fruit">фрукты</string>
+    <string name="material_fruit_apricot">абрикос</string>
+    <string name="material_fruit_pineapple">ананас</string>
+    <string name="material_fruit_banana">банан</string>
+    <string name="material_fruit_grape">виноград</string>
+    <string name="material_fruit_grapefruit">грейпфрукт</string>
+    <string name="material_fruit_pear">груша</string>
+    <string name="material_fruit_melon">дыня</string>
+    <string name="material_fruit_lemon">лимон</string>
+    <string name="material_fruit_mandarin">мандарин</string>
+    <string name="material_fruit_peach">персик</string>
+    <string name="material_fruit_plum">слива</string>
+    <string name="material_fruit_apple">яблоко</string>
+    <string name="material_fruit_kiwi">киви</string>
+    <string name="material_fruit_mango">манго</string>
+    <string name="material_fruit_persimmon">хурма</string>
+
+    <string name="material_vegetable">овощи</string>
+    <string name="material_vegetable_aubergine">баклажан</string>
+    <string name="material_vegetable_bean">бобы</string>
+    <string name="material_vegetable_pea">горох</string>
+    <string name="material_vegetable_cabbage">капуста</string>
+    <string name="material_vegetable_onion">лук</string>
+    <string name="material_vegetable_carrot">морковь</string>
+    <string name="material_vegetable_cucumber">огурец</string>
+    <string name="material_vegetable_tomato">помидор</string>
+    <string name="material_vegetable_pepper">перец</string>
+    <string name="material_vegetable_radish">редис</string>
+    <string name="material_vegetable_beet">свекла</string>
+    <string name="material_vegetable_garlic">чеснок</string>
+    <string name="material_vegetable_pumpkin">тыква</string>
+
+    <string name="material_furniture">мебель</string>
+    <string name="material_furniture_bookcase">шкаф</string>
+    <string name="material_furniture_cupboard">буфет</string>
+    <string name="material_furniture_shelf">полка</string>
+    <string name="material_furniture_table">стол</string>
+    <string name="material_furniture_chair">стул</string>
+    <string name="material_furniture_armchair">кресло</string>
+    <string name="material_furniture_bed">кровать</string>
+    <string name="material_furniture_stool">табурет</string>
+    <string name="material_furniture_mirror">зеркало</string>
+    <string name="material_furniture_bureau">комод</string>
+    <string name="material_furniture_bench">лавка</string>
+
+    <string name="material_wild_animal">дикие животные</string>
+    <string name="material_wild_animal_bear">медведь</string>
+    <string name="material_wild_animal_fox">лиса</string>
+    <string name="material_wild_animal_rabbit">заяц</string>
+    <string name="material_wild_animal_boar">кабан</string>
+    <string name="material_wild_animal_deer">олень</string>
+    <string name="material_wild_animal_moose">лось</string>
+    <string name="material_wild_animal_giraffe">жираф</string>
+    <string name="material_wild_animal_hippopotamus">бегемот</string>
+    <string name="material_wild_animal_zebra">зебра</string>
+    <string name="material_wild_animal_kangaroo">кенгуру</string>
+    <string name="material_wild_animal_elephant">слон</string>
+    <string name="material_wild_animal_leopard">леопард</string>
+    <string name="material_wild_animal_lion">лев</string>
+    <string name="material_wild_animal_tiger">тигр</string>
+    <string name="material_wild_animal_rat">крыса</string>
+    <string name="material_wild_animal_raccoon">енот</string>
+    <string name="material_wild_animal_squirrel">белка</string>
+    <string name="material_wild_animal_beaver">бобер</string>
+    <string name="material_wild_animal_mouse">мышь</string>
+    <string name="material_wild_animal_monkey">обезьяна</string>
+
+    <string name="material_pet">домашние животные</string>
+    <string name="material_pet_pig">поросёнок</string>
+    <string name="material_pet_horse">лошадь</string>
+    <string name="material_pet_donkey">осел</string>
+    <string name="material_pet_cow">корова</string>
+    <string name="material_pet_bull">бык</string>
+    <string name="material_pet_cat">кошка</string>
+    <string name="material_pet_dog">собака</string>
+    <string name="material_pet_sheep">баран</string>
+    <string name="material_pet_goat">коза</string>
+    <string name="material_pet_foal">жеребенок</string>
+    <string name="material_pet_rabbit">кролик</string>
+
+    <string name="material_action">действие</string>
+    <string name="material_action_walk">идти</string>
+    <string name="material_action_run">бежать</string>
+    <string name="material_action_crawl">ползать</string>
+    <string name="material_action_drag">тащить</string>
+    <string name="material_action_push">толкать</string>
+    <string name="material_action_carry">нести</string>
+    <string name="material_action_throw">бросать</string>
+    <string name="material_action_hit">ударять</string>
+    <string name="material_action_close">закрыть</string>
+    <string name="material_action_open">открыть</string>
+    <string name="material_action_hide">прятать</string>
+    <string name="material_action_see">смотреть</string>
+    <string name="material_action_sniff">нюхать</string>
+    <string name="material_action_cry">плакать</string>
+    <string name="material_action_speak">говорить</string>
+    <string name="material_action_write">писать</string>
+    <string name="material_action_think">думать</string>
+    <string name="material_action_scare">пугать</string>
+
+    <string name="material_human_quality">качество человека</string>
+    <string name="material_human_quality_thin">худой</string>
+    <string name="material_human_quality_fat">толстый</string>
+    <string name="material_human_quality_tall">высокий</string>
+    <string name="material_human_quality_low">низкий</string>
+    <string name="material_human_quality_weak">слабый</string>
+    <string name="material_human_quality_strong">сильный</string>
+    <string name="material_human_quality_old">старый</string>
+    <string name="material_human_quality_young">молодой</string>
+    <string name="material_human_quality_hairy">волосатый</string>
+    <string name="material_human_quality_bald">лысый</string>
+    <string name="material_human_quality_handsome">красивый</string>
+    <string name="material_human_quality_ugly">уродливый</string>
+    <string name="material_human_quality_clever">умный</string>
+    <string name="material_human_quality_stupid">глупый</string>
+    <string name="material_human_quality_evil">злой</string>
+    <string name="material_human_quality_kind">добрый</string>
+    <string name="material_human_quality_greedy">жадный</string>
+    <string name="material_human_quality_generous">шедрый</string>
+    <string name="material_human_quality_rude">грубый</string>
+    <string name="material_human_quality_polite">вежливый</string>
+    <string name="material_human_quality_married">женатый</string>
+    <string name="material_human_quality_single">холостой</string>
+    <string name="material_human_quality_rich">богатый</string>
+    <string name="material_human_quality_poor">бедный</string>
+    <string name="material_human_quality_active">активный</string>
+    <string name="material_human_quality_passive">пассивный</string>
+
+    <string name="material_insect">насекомые</string>
+    <string name="material_insect_fly">муха</string>
+    <string name="material_insect_mosquito">комар</string>
+    <string name="material_insect_flea">блоха</string>
+    <string name="material_insect_moth">моль</string>
+    <string name="material_insect_dragonfly">стрекоза</string>
+    <string name="material_insect_spider">паук</string>
+    <string name="material_insect_wasp">оса</string>
+    <string name="material_insect_tick">клещ</string>
+    <string name="material_insect_bee">пчела</string>
+    <string name="material_insect_caterpillar">гусеница</string>
+    <string name="material_insect_butterfly">бабочка</string>
+    <string name="material_insect_ant">муравей</string>
+    <string name="material_insect_grasshopper">кузнечик</string>
+    <string name="material_insect_bug">жук</string>
+    <string name="material_insect_cockroach">таракан</string>
+    <string name="material_insect_scorpion">скорпион</string>
+    <string name="material_insect_mantis">богомол</string>
+    <string name="material_insect_snail">улитка</string>
+    <string name="material_insect_worm">червяк</string>
+
+    <string name="material_bird">птицы</string>
+    <string name="material_bird_crow">ворона</string>
+    <string name="material_bird_flamingo">фламинго</string>
+    <string name="material_bird_seagull">чайка</string>
+    <string name="material_bird_sparrow">воробей</string>
+    <string name="material_bird_woodpecker">дятел</string>
+    <string name="material_bird_owl">сова</string>
+    <string name="material_bird_ostrich">страус</string>
+    <string name="material_bird_penguin">пингвин</string>
+    <string name="material_bird_peacock">павлин</string>
+    <string name="material_bird_chicken">курица</string>
+    <string name="material_bird_cock">петух</string>
+    <string name="material_bird_swan">лебедь</string>
+    <string name="material_bird_goose">гусь</string>
+    <string name="material_bird_duck">утка</string>
+    <string name="material_bird_parakeet">попугай</string>
+    <string name="material_bird_eagle">орел</string>
+    <string name="material_bird_hawk">сокол</string>
+    <string name="material_bird_pigeon">голубь</string>
+    <string name="material_bird_stork">аист</string>
+
+    <string name="text1">Давным давно в маленьком и уютном замке жил принц. Больше всего на свете он хотел жениться на красивой, доброй и умной принцессе из соседнего королевства.
+        Но принцесса согласна была выйти замуж только за умного принца, который решит 10 задач.
+        \n\nПомоги принцу решить задачки</string>
+
+    <string name="text2">Принц решил все задачки и вскоре была назначена свадьба. А в это время далеко за морем злой колдун читал волшебную книгу в своем темном замке.
+        Из книги он узнал о предстоящей свадьбе принца и принцессы. Колдун был одинок и завидовал счастью принца. Поэтому он сам решил жениться на прекрассной невесте. </string>
+
+    <string name="text3">Колдун призвал дракона и велел ему выкрасть принцессу.
+        Поздно вечером когда принцесса по обыкновению пошла одна на прогулку, дракон налетел на нее, схватил и унес в своих когтистых лапах. Ни кто из слуг и жителей замка не заметили дракона.</string>
+
+    <string name="text4">На следующее утро, за завтраком была обнаружена пропажа принцессы.
+        Весь день все жители замка во главе с принцом искали девушку. Вечером, после бесплодных поисков юноша решил посоветоваться с  волшебником, который жил в самой высокой башне.
+        Волшебник был добрым, но не любил глупых людей, поэтому почти не выходил из своей башни.
+        \n\nПомоги принцу поговорить с волшебником.</string>
+
+
+    <string name="text5">Волшебник поведал принцу про похищение и злого колдуна. Юноша немедленно взял меч, одел доспехи, сел на коня и отправился искать свою невесту.
+    Вскоре принц въехал в небольшую деревню. Все жители деревни были поникшими.
+        \n - Почему все такие грустные спросил принц у прохожего.
+        \n- наш староста заболел и умирает. Только заклинание из волшебной книги может ему помчь, но ни кто в деревне не умеет читать.
+       \n- Я помогу вам немедленно отозвался и принц и направился в дом старосты.
+        \n\nПомоги принцу вылечить старосту.
+    </string>
+
+    <string name="text6"> Когда староста выздоровел, он поблагодарил принца и рассказал ему, как добраться до замка злого колдуна.
+        Принц после недолгого отдыха отправился дальше. Через несколько дней впереди показались бесконечные барханы песка.
+        Всадник напоил коня, набрал воды сколько мог увезти и отправился через пустыню. Как принц не экономил воду, через несколько дней она закончилась, а конца пустыни не было видно.
+    </string>
+
+    <string name="text7">Вдруг большая куча песка зашевелилась и на ружу выполз огромный паук. Он схватил ослабевшего принца и заговорил человеческим голосом.
+        \n - Кто ты и куда держишь свой путь?
+        \n - Я принц и восточного замка. Еду спасать свою невесту, которую украл злой колдун.
+        \n - хм. задумался паук. Я помогу тебе если ты отгадаешь 10 загадок. А если не отгадаешь, то я тебя съем.
+
+        \n\nПомоги принцу отгадать загадки паука.
+    </string>
+    <string name="title_activity_main_activity2">MainActivity2Activity</string>
+
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_story_text">StoryTextActivity</string>
+    <string name="title_activity_select_level">SelectLevelActivity</string>
+</resources>

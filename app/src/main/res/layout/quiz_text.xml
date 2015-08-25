@@ -1,0 +1,65 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    android:shrinkColumns="*">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer1"
+            android:soundEffectsEnabled="true"/>
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer2" />
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer3" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer4"
+            android:soundEffectsEnabled="true"/>
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer5" />
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer6" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer7"
+            android:soundEffectsEnabled="true"/>
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer8" />
+
+        <Button
+            style="@style/OptionButton"
+            android:id="@+id/answer9" />
+
+    </TableRow>
+</TableLayout>

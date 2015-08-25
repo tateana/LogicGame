@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.home.tateana.logicgame.StoryActivity"
+    android:background="@color/brown"
+    android:id="@+id/main">
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/bottom_navigation_height"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/nav"
+        layout="@layout/story_navigation"/>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*"
+        android:shrinkColumns="*"
+        android:background="@drawable/ig_map"
+        android:paddingLeft="@dimen/activity_horizontal_margin_left"
+        android:paddingRight="@dimen/activity_horizontal_margin_right"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        android:layout_above="@id/nav"
+        android:id ="@+id/map">
+
+        <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/badCastle"
+            android:src="@drawable/ig_bad_castle"
+            android:layout_weight="1" />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/wizard"
+            android:src="@drawable/ig_wizard"
+            android:layout_weight="1"
+            android:visibility="visible"
+            android:layout_marginTop="@dimen/map_hero_margin"
+            android:scaleType="fitStart" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/wideMountains"
+            android:src="@drawable/ig_wide_mountains"
+            android:layout_weight="1"
+            android:scaleType="fitXY" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:id="@+id/dragon"
+            android:src="@drawable/dragon1"
+            android:visibility="visible"
+            android:scaleType="fitEnd" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/highMountains"
+            android:src="@drawable/ig_high_mountains"
+            android:layout_weight="1"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/forest"
+            android:src="@drawable/ig_deep_forest"
+            android:layout_weight="1"
+            android:scaleType="fitEnd" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_span = "3" >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/ocean"
+            android:id="@+id/oceanBackground"
+            android:layout_marginTop="10dp"/>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/oceanRight"
+            android:background="@drawable/bg_ocean"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/oceanLeft"
+            android:background="@drawable/bg_ocean"
+            android:scaleType="fitXY" />
+        </FrameLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/lowMountains"
+            android:src="@drawable/ig_low_mountains"/>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/ig_light_forest"
+                android:visibility="visible"
+                android:scaleType="fitEnd" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/ig_light_forest"
+                android:visibility="visible"
+                android:scaleType="fitStart" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/flame"
+                android:src="@drawable/ig_strong_flame"
+                android:visibility="visible"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="@dimen/map_hero_margin"/>
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/whale"
+            android:layout_weight="1"
+            android:src="@drawable/ig_sad_whale"
+            android:visibility="visible"
+            android:scaleType="fitEnd" />
+        </TableRow>
+        <TableRow android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_span = "2">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/ig_desert"
+                    android:scaleType="fitEnd" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/spider"
+                    android:src="@drawable/ig_spider2"
+                    android:visibility="visible"
+                    android:scaleType="fitEnd" />
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/ig_low_mountains"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/town"
+                android:src="@drawable/ig_town"
+                android:layout_weight="1"
+                android:scaleType="fitStart" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/knight"
+                    android:src="@drawable/ig_knight"
+                    android:layout_marginTop="@dimen/map_hero_margin"
+                    android:scaleType="fitEnd"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/princess"
+                    android:src="@drawable/ig_princess_1"
+                    android:visibility="visible"
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="@dimen/map_hero_margin"/>
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/prince"
+                    android:src="@drawable/ig_prince_1"
+                    android:visibility="visible"
+                    android:scaleType="fitEnd"
+                    android:layout_marginTop="@dimen/map_hero_margin"/>
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/goodCastle"
+                android:src="@drawable/ig_good_castle" />
+        </TableRow>
+
+    </TableLayout>
+</RelativeLayout>

@@ -1,0 +1,90 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <style name="Button" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">16dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/button</item>
+    </style>
+
+    <style name="ButtonWide" parent="Button">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="OptionButton" parent="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="NavigationButton" parent="Button">
+        <item name="android:layout_width">@dimen/icon_button_size</item>
+        <item name="android:layout_height">@dimen/icon_button_size</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:scaleType">fitXY</item>
+
+    </style>
+
+    <style name="OptionImageButton" parent="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="RoundButton" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">16dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/button_round</item>
+    </style>
+
+    <style name="Widget.Button.Toggle" parent="NavigationButton">
+        <item name="android:background">@drawable/toggle_button</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+
+
+    <style name="BorderLayout">
+        <item name="android:windowBackground">@drawable/border</item>
+        <item name="android:background">@drawable/border</item>
+    </style>
+
+    <style name="Question">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:buttonStyle">@style/Button</item>
+        <item name="android:textColor">@color/deep_brown</item>
+
+        <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
+        <item name="android:textOn"></item>
+        <item name="android:textOff"></item>
+
+        <item name="android:alertDialogStyle">@style/MyDialog</item>
+    </style>
+
+    <style name="AppThemeTranslucent" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:buttonStyle">@style/Button</item>
+        <item name="android:textColor">@color/deep_brown</item>
+    </style>
+
+    <style name="MyDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/deep_brown</item>
+        <item name="android:buttonBarStyle">@style/ButtonWide</item>
+        <item name="android:buttonStyle">@style/ButtonWide</item>
+        <item name="android:buttonBarNeutralButtonStyle" tools:ignore="NewApi">@style/ButtonWide</item>
+        <item name="android:windowBackground">@drawable/border</item>
+    </style>
+
+</resources>

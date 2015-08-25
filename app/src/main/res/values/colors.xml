@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red">#ffff3d38</color>
+    <color name="orange">#ffff944c</color>
+    <color name="yellow">#ffdfdd23</color>
+    <color name="deep_orange">#fffc8f3d</color>
+    <color name="light_gray">#F2F2F2</color>
+    <color name="brown">#64635D</color>
+    <color name="deep_brown">#4c3000</color>
+    <color name="ocean">#F1E7BE</color>
+    <color name="ocean1">#00A0E3</color>
+
+    <color name="button_bg_top">#9BC501</color>
+    <color name="button_bg_bottom">#608307</color>
+    <color name="button_border">#537800</color>
+
+    <color name="selected_button_bg_top">#658317</color>
+    <color name="selected_button_bg_bottom">#425906</color>
+    <color name="selected_button_border">#50690F</color>
+
+    <color name="disabled_button_bg_top">#B6B6B6</color>
+    <color name="disabled_button_bg_bottom">#8F8F8F</color>
+    <color name="disabled_button_border">#606060</color>
+
+    <color name="material_red">#F44336</color>
+    <color name="material_pink">#E91E63</color>
+    <color name="material_purple">#9C27B0</color>
+    <color name="material_deep_purple">#673AB7</color>
+    <color name="material_blue">#3F51B5</color>
+    <color name="material_light_blue">#03A9F4</color>
+    <color name="material_cyan">#00BCD4</color>
+    <color name="material_teal">#009688</color>
+    <color name="material_green">#4CAF50</color>
+    <color name="material_light_green">#8BC34A</color>
+    <color name="material_lime">#CDDC39</color>
+    <color name="material_yellow">#FFEB3B</color>
+    <color name="material_amber">#FFC107</color>
+    <color name="material_orange">#FF9800</color>
+    <color name="material_deep_orange">#FF5722</color>
+    <color name="material_brown">#795548</color>
+    <color name="material_grey">#9E9E9E</color>
+    <color name="material_blue_grey">#607D8B</color>
+</resources>
