@@ -2,37 +2,57 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    tools:context=".MainActivity"
     android:clickable="false"
-    android:clipChildren="false"
+    android:background="@drawable/bg_main_bottom"
     style="@style/AppTheme">
 
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/main_bg_left"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_bg_right"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:clickable="false"
+        android:background="@drawable/bg_main_top">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/logo"
-        android:src="@drawable/ig_main_logo"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:id="@+id/start"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
         style="@style/NavigationButton"
         android:contentDescription="@string/start"
-        android:src="@android:drawable/ic_media_play" />
+        android:src="@drawable/ic_start" />
 
     <ImageButton
         android:id="@+id/restart"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/start"
+        android:layout_toRightOf="@id/start"
         style="@style/NavigationButton"
-        android:src="@android:drawable/ic_menu_revert"
+        android:src="@drawable/ic_restart"
         android:focusable="true" />
 
 
@@ -49,33 +69,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:background="@drawable/level_easy"
             android:button="@android:color/transparent"
             android:text="@string/easy"
             android:gravity="center_horizontal|top"
             style="@style/AppTheme"
-            android:layout_marginRight="@dimen/level_option_margin" />
+            android:layout_marginRight="@dimen/level_option_margin"
+            android:background="@drawable/difficulty_easy"
+            android:drawablePadding="0dp" />
 
         <RadioButton
             android:id="@+id/normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/level_normal"
+            android:background="@drawable/difficulty_normal"
             android:button="@android:color/transparent"
             android:text="@string/normal"
             android:gravity="center_horizontal|top"
             style="@style/AppTheme"
-            android:layout_marginRight="@dimen/level_option_margin"/>
+            android:layout_marginRight="@dimen/level_option_margin"
+            android:checked="false" />
 
         <RadioButton
             android:id="@+id/hard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/level_hard"
+            android:background="@drawable/difficulty_hard"
             android:text="@string/hard"
             android:gravity="center_horizontal|top"
             android:button="@android:color/transparent"
-            style="@style/AppTheme" />
+            style="@style/AppTheme"
+            android:checked="false" />
     </RadioGroup>
 
     <ImageButton
@@ -84,8 +107,7 @@
         android:layout_alignParentLeft="true"
         style="@style/NavigationButton"
         android:background="@drawable/toggle_button"
-        android:src="@mipmap/ic_audio_reading"
-        />
+        android:src="@drawable/ic_audio_reading"/>
 
     <ImageButton
         android:id="@+id/music"
@@ -93,19 +115,17 @@
         android:layout_toRightOf="@id/reading"
         style="@style/NavigationButton"
         android:background="@drawable/toggle_button"
-        android:src="@mipmap/ic_music"
+        android:src="@drawable/ic_music"
         />
-
 
     <ImageButton
         android:id="@+id/showLevels"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/start"
         style="@style/NavigationButton"
-        android:contentDescription="@string/start"
-        android:src="@mipmap/ic_map"
-        android:layout_alignParentStart="true" />
+        android:contentDescription="@string/title_activity_select_level"
+        android:src="@drawable/ic_map" />
 
-
+    </RelativeLayout>
 
 </RelativeLayout>

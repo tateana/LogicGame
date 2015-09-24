@@ -1,39 +1,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="@dimen/bottom_navigation_height"
-    android:background="@color/brown"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginBottom="@dimen/activity_vertical_margin" >
+    android:layout_height="fill_parent"
+
+    android:paddingTop="@dimen/bottom_navigation_height"
+    android:paddingBottom="@dimen/bottom_navigation_height"
+ >
 
     <ImageButton
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/home"
+        android:src="@drawable/ic_action_home"
+        style="@style/NavigationButton"/>
+
+    <ImageButton
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/home"
+        android:id="@+id/showText"
+        android:enabled="false"
+        android:src="@drawable/ic_action_story_text"
+        style="@style/NavigationButton"  />
+    <ImageButton
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/next"
         android:id="@+id/back"
-        android:src="@android:drawable/ic_media_rew"
+        android:src="@drawable/ic_action_left"
         style="@style/NavigationButton"   />
 
     <ImageButton
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:id="@+id/next"
-        android:src="@android:drawable/ic_media_ff"
+        android:src="@drawable/ic_action_right"
         style="@style/NavigationButton"/>
 
 
-    <ImageButton
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/home"
-        android:src="@mipmap/ic_home"
-        style="@style/NavigationButton"/>
 
-    <ImageButton
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/home"
-        android:id="@+id/showText"
-        android:enabled="false"
-        android:src="@android:drawable/ic_dialog_info"
-        style="@style/NavigationButton"  />
 </RelativeLayout>

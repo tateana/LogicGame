@@ -18,11 +18,11 @@
     <item
         android:state_pressed="true"
         android:state_enabled="true"
-        android:drawable="@drawable/button_round_pressed" />
+        android:drawable="@drawable/button_round_selected" />
     <item
         android:state_focused="true"
         android:state_enabled="true"
-        android:drawable="@drawable/button_round_focused" />
+        android:drawable="@drawable/button_round_selected" />
     <item
         android:state_enabled="true"
         android:drawable="@drawable/button_round_enabled" />

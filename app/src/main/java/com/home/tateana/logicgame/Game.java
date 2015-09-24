@@ -2,7 +2,6 @@ package com.home.tateana.logicgame;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -11,9 +10,9 @@ import android.util.SparseIntArray;
 import android.widget.ListAdapter;
 
 import com.home.tateana.logicgame.gui.LevelAdapter;
+import com.home.tateana.logicgame.gui.SoundPlayerDefault;
+import com.home.tateana.logicgame.gui.SoundPlayerNoText;
 import com.home.tateana.logicgame.gui.SoundPlayer;
-import com.home.tateana.logicgame.gui.SoundPlayerImpl;
-import com.home.tateana.logicgame.gui.SoundPlayerMock;
 import com.home.tateana.logicgame.gui.ViewLocationCalculator;
 import com.home.tateana.logicgame.quiz.ExpressionTaskFactory;
 import com.home.tateana.logicgame.quiz.QuizImageModel;
@@ -22,13 +21,17 @@ import com.home.tateana.logicgame.quiz.ShapeColorTaskFactory;
 import com.home.tateana.logicgame.quiz.Task;
 import com.home.tateana.logicgame.quiz.WordCategoriesStorage;
 import com.home.tateana.logicgame.quiz.WordCategoryTaskFactory;
+import com.home.tateana.logicgame.story.Story10EndFightWithDragon;
 import com.home.tateana.logicgame.story.Story1StartModel;
 import com.home.tateana.logicgame.story.Story2StealPrincessModel;
 import com.home.tateana.logicgame.story.Story3KnightGoesToTown;
 import com.home.tateana.logicgame.story.Story4FromTownToDesert;
 import com.home.tateana.logicgame.story.Story5InDesert;
+import com.home.tateana.logicgame.story.Story6FromDesertToForest;
+import com.home.tateana.logicgame.story.Story7FromForestToWhale;
+import com.home.tateana.logicgame.story.Story8RideOnWhale;
+import com.home.tateana.logicgame.story.Story9StartFightWithDragon;
 import com.home.tateana.logicgame.story.StoryModel;
-import com.home.tateana.logicgame.utils.BackgroundMusic;
 import com.home.tateana.logicgame.utils.DifficultyConfiguration;
 import com.home.tateana.logicgame.utils.RandomNumberGenerator;
 import com.home.tateana.logicgame.utils.TaskFactory;
@@ -64,7 +67,6 @@ public class Game {
     final public static int LEVEL_STORY_11 = 21;
 
     final public static String STATE_LEVEL = "playerLevel";
-    //final public static String STATE_SUB_LEVEL = "playerSubLevel";
 
     private GameSettings settings;
     private DifficultyConfiguration difficultyConfiguration;
@@ -104,18 +106,35 @@ public class Game {
                 return new Story4FromTownToDesert(level,  soundPlayer, viewLocationCalculator);
             case LEVEL_STORY_5:
                 return new Story5InDesert(level,  soundPlayer, viewLocationCalculator);
+            case LEVEL_STORY_6:
+                return new Story6FromDesertToForest(level, soundPlayer, viewLocationCalculator);
+            case LEVEL_STORY_7:
+                return new Story7FromForestToWhale(level, soundPlayer, viewLocationCalculator);
+            case LEVEL_STORY_8:
+                return new Story8RideOnWhale(level, soundPlayer, viewLocationCalculator);
+            case LEVEL_STORY_9:
+                return new Story9StartFightWithDragon(level, soundPlayer, viewLocationCalculator);
+            case LEVEL_STORY_10:
+                return new Story10EndFightWithDragon(level, soundPlayer, viewLocationCalculator);
             default:
                 throw new RuntimeException("Not existing story level "+String.valueOf(level));
           }
     }
 
     public QuizModel getTaskModel(int level, Context context){
+
+        int score = 0;
+        if(level == getSettings(context).getLastRequestedLevel()) {
+            score = getSettings(context).getLastScore();
+        }
+
         getSettings(context).setLastRequestedLevel(level);
         getSettings(context).setPassedLevel(level-1);
 
         Resources resources = context.getResources();
         RandomNumberGenerator numberGenerator = this.getRandomNumberGenerator();
         DifficultyConfiguration difficultyConfiguration = getDifficultyConfiguration();
+        difficultyConfiguration.setDifficultyLevel(getSettings(context).getDifficultyLevel());
         LinkedList<Task> tasks;
         TaskFactory taskFactory;
         QuizModel model;
@@ -145,10 +164,7 @@ public class Game {
 
         tasks = taskFactory.createTasks();
         model.setTasks(tasks);
-        /*if(level == lastRequestedLevel) {
-            model.setScore(lastScore);
-        }
-        lastRequestedLevel = level;*/
+        model.setScore(score);
         return model;
     }
 
@@ -161,6 +177,9 @@ public class Game {
             case LEVEL_STORY_5:
             case LEVEL_STORY_6:
             case LEVEL_STORY_7:
+            case LEVEL_STORY_8:
+            case LEVEL_STORY_9:
+            case LEVEL_STORY_10:
                 return StoryActivity.class;
             case LEVEL_TASK_1:
             case LEVEL_TASK_2:
@@ -198,9 +217,9 @@ public class Game {
         GameSettings settings = getSettings(context);
 
         if(getSettings(context).isReadText()) {
-            return new SoundPlayerImpl(audioManager, context);
+            return new SoundPlayerDefault(audioManager, context);
         }
-        return new SoundPlayerMock();
+        return new SoundPlayerNoText(audioManager, context);
     }
 
     public ViewLocationCalculator getViewLocationCalculator() {
@@ -208,21 +227,8 @@ public class Game {
     }
 
     public ListAdapter getLevelAdapter(Context context) {
-        SparseIntArray imageResArray = new SparseIntArray();
-        imageResArray.append(Game.LEVEL_STORY_1, R.mipmap.icon_prince);
-        imageResArray.append(Game.LEVEL_STORY_2, R.mipmap.icon_dragon);
-        imageResArray.append(Game.LEVEL_STORY_3, R.mipmap.icon_princess);
-        imageResArray.append(Game.LEVEL_STORY_4, R.mipmap.icon_prince);
-        imageResArray.append(Game.LEVEL_STORY_5, R.mipmap.icon_prince);
-        imageResArray.append(Game.LEVEL_STORY_6, R.mipmap.icon_prince);
-        imageResArray.append(Game.LEVEL_STORY_7, R.mipmap.icon_prince);
-        imageResArray.append(Game.LEVEL_STORY_8, R.mipmap.icon_prince);
-        imageResArray.append(Game.LEVEL_STORY_9, R.mipmap.icon_prince);
-        imageResArray.append(Game.LEVEL_STORY_10, R.mipmap.icon_prince);
-        imageResArray.append(Game.LEVEL_STORY_11, R.mipmap.icon_prince);
-
         //LevelGalleryAdapter adapter = new LevelGalleryAdapter(LEVEL_STORY_11 - 1, imageResArray);
-        LevelAdapter adapter = new LevelAdapter(LEVEL_STORY_11, getSettings(context).getAvailableLevel(), getSettings(context).getPassedLevel(), imageResArray);
+        LevelAdapter adapter = new LevelAdapter(LEVEL_STORY_11, getSettings(context).getAvailableLevel(), getSettings(context).getPassedLevel());
         //adapter.setItemClickListener(activity);
         //adapter.setMaxAvailableLevel(availableLevel);
         return adapter;
@@ -231,7 +237,9 @@ public class Game {
     public MediaPlayer getBackgroundMusic(Context context) {
         if(backgroundMusic == null) {
             backgroundMusic = MediaPlayer.create(context, R.raw.background_music);
+            backgroundMusic.setAudioStreamType(AudioManager.STREAM_MUSIC);
             backgroundMusic.setLooping(true);
+            backgroundMusic.setVolume(0.2f, 0.2f);
         }
 
         return backgroundMusic;

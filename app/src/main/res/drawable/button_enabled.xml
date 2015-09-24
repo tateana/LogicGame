@@ -5,10 +5,10 @@
         android:endColor="@color/button_bg_top"
         android:startColor="@color/button_bg_bottom"
         android:angle="90"/>
-    <padding android:left="7dp"
-        android:top="7dp"
-        android:right="7dp"
-        android:bottom="7dp" />
+    <padding android:left="@dimen/button_padding"
+        android:top="@dimen/button_padding"
+        android:right="@dimen/button_padding"
+        android:bottom="@dimen/button_padding" />
     <stroke
         android:width="2dip"
         android:color="@color/button_border" />

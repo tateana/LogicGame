@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,11 +27,11 @@ public class StoryTextActivity extends Activity {
         TextView textView = (TextView)findViewById(R.id.text);
         textView.setText(textId);
 
-        Button closeButton = (Button) findViewById(R.id.close);
+        ImageButton closeButton = (ImageButton) findViewById(R.id.close);
         closeButton.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
-                                              overridePendingTransition(R.anim.slide_up_info,R.anim.abc_slide_in_bottom);
+
                                               finish();
                                           }
                                       }

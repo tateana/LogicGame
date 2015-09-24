@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.home.tateana.logicgame.story.StoryModel;
+import com.squareup.picasso.Picasso;
 
 import android.os.Handler;
+import android.widget.ImageView;
 
 
 public class StoryActivity extends Activity {
@@ -20,24 +22,15 @@ public class StoryActivity extends Activity {
     private Handler delayHandler;
     private Runnable delayExecutor;
 
-    private View.OnTouchListener buttonTouchListener = new View.OnTouchListener() {
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                Log.d(Game.LOG_TAG, "click button ");
-                model.getSoundPlayer().playButtonClick();
-            }
-
-            return false;
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(Game.LOG_TAG, "create activity " + this.getClass().toString());
         setContentView(R.layout.activity_story);
+
+        Picasso.with(this).load(R.drawable.ig_forest).into((ImageView)findViewById(R.id.forest));
+        Picasso.with(this).load(R.drawable.ig_forest).into((ImageView)findViewById(R.id.forest_2));
+        Picasso.with(this).load(R.drawable.ig_forest).into((ImageView)findViewById(R.id.forest_3));
 
         ImageButton homeButton = (ImageButton) findViewById(R.id.home);
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -139,10 +132,8 @@ public class StoryActivity extends Activity {
         }
     }
 
-
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         delayHandler.removeCallbacks(delayExecutor);
         if (isFinishing()) {
             Log.d(Game.LOG_TAG, " finish and destroy activity " + this.getClass().toString());
@@ -151,6 +142,8 @@ public class StoryActivity extends Activity {
             Log.d(Game.LOG_TAG, " destroy activity " + this.getClass().toString());
             model.stop();
         }
+        super.onDestroy();
+        Runtime.getRuntime().gc();
     }
 
     @Override
@@ -168,4 +161,17 @@ public class StoryActivity extends Activity {
         startActivity(goToNextActivity);
         finish();
     }
+
+    @Override
+    protected void onStop() {
+        Game.getGame().unbind(this);
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        Game.getGame().bind(this);
+        super.onStart();
+    }
+
 }

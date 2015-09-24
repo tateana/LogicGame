@@ -3,17 +3,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
 
+    android:padding="@dimen/map_activity_padding"
+
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.home.tateana.logicgame.StoryActivity"
-    android:background="@color/brown"
+    android:background="@drawable/bg_wood"
     android:id="@+id/main">
 
-    <include
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/bottom_navigation_height"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/nav"
-         layout="@layout/story_navigation"/>
+
 
     <TableLayout
         android:layout_width="fill_parent"
@@ -21,14 +18,16 @@
         android:stretchColumns="1,2,3,4,5"
         android:shrinkColumns="1,2,3,4,5"
         android:weightSum="3"
-        android:layout_above="@id/nav"
+        android:background="@drawable/ig_map_back"
+        android:layout_alignParentTop="true"
         android:orientation="horizontal"
 
-        android:paddingLeft="@dimen/activity_horizontal_margin_left"
-        android:paddingRight="@dimen/activity_horizontal_margin_right"
-        android:paddingTop="@dimen/activity_vertical_margin_top"
-        android:paddingBottom="@dimen/activity_vertical_margin_bottom"
-        android:background="@drawable/ig_map_back">
+        android:layout_marginRight="@dimen/map_hero_margin"
+
+        android:paddingLeft="@dimen/map_content_margin_left"
+        android:paddingRight="@dimen/map_content_margin_right"
+        android:paddingTop="@dimen/map_content_margin_top"
+        android:paddingBottom="@dimen/map_content_margin_bottom">
 
         <TableRow
             android:layout_weight="1">
@@ -39,50 +38,49 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/badCastle"
-                android:src="@drawable/anim_bad_castle"
+                android:src="@drawable/ig_bad_castle"
                 android:layout_weight="1"
                 android:scaleType="fitEnd" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/wizard"
-                android:src="@drawable/anim_wizard"
                 android:layout_weight="1"
-                android:visibility="visible"
                 android:layout_marginTop="@dimen/map_hero_margin"
                 android:scaleType="fitStart" />
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:id="@+id/dragon"
-                android:src="@drawable/anim_dragon"
-                android:layout_weight="1"
-                android:visibility="visible"
-                android:scaleType="fitStart" />
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:id="@+id/highMountains"
-                android:src="@drawable/ig_mountains"
-                android:layout_weight="2" />
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1">
+                android:layout_weight="2">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/highMountains"
+                android:src="@drawable/ig_mountains" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/dragon"
+                android:scaleType="fitStart" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="2">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/forest"
-                android:src="@drawable/ig_forest"
                 android:scaleType="fitEnd" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/fairy"
-                android:src="@drawable/anim_fairy"
                 android:scaleType="fitStart"
-                android:layout_marginBottom="@dimen/map_hero_margin"/>
+                android:layout_marginBottom="@dimen/map_hero_margin" />
             </FrameLayout>
         </TableRow>
 
@@ -95,14 +93,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/oceanRight"
-                android:baselineAlignBottom="false"
-                android:src="@drawable/anim_ocean"
+                android:src="@drawable/ocean"
                 android:scaleType="fitXY" />
 
-
-
-        </FrameLayout>
-
+       </FrameLayout>
 
         <TableRow
             android:layout_weight="1" >
@@ -112,9 +106,8 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/ig_forest"
+                android:id="@+id/forest_2"
                 android:layout_weight="2"
-
                 android:scaleType="fitCenter" />
 
             <FrameLayout
@@ -130,21 +123,17 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/spider"
-                    android:src="@drawable/anim_spider"
-                    android:visibility="visible"
-                    android:scaleType="fitEnd" />
+                    android:visibility="invisible"
+                    android:scaleType="fitCenter" />
             </FrameLayout>
-
-
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:id="@+id/whale"
                 android:layout_weight="1"
-                android:src="@drawable/anim_whale"
-                android:visibility="visible"
-                android:scaleType="fitEnd" />
+                android:scaleType="fitStart"
+                android:paddingBottom="@dimen/map_hero_margin" />
         </TableRow>
 
         <TableRow
@@ -162,13 +151,12 @@
                     android:layout_height="fill_parent"
                     android:id="@+id/goodCastle"
                     android:src="@drawable/ig_good_castle"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitEnd"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:src="@drawable/anim_good_castle"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitEnd"
                     android:layout_weight="1"
                     android:id="@+id/salut" />
             </FrameLayout>
@@ -182,7 +170,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/knight"
-                    android:src="@drawable/ig_knight"
                     android:visibility="invisible"
                     android:scaleType="fitStart" />
 
@@ -190,16 +177,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/prince"
-                    android:src="@drawable/anim_prince"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:scaleType="fitStart" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/princess"
-                    android:src="@drawable/anim_princess"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:scaleType="fitStart"
                     android:layout_toRightOf="@id/prince"/>
 
@@ -212,7 +197,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ig_town"
+                    android:src="@drawable/ig_town2"
                     android:scaleType="fitEnd"
                     android:visibility="visible" />
 
@@ -220,7 +205,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/town"
-                    android:src="@drawable/anim_mill"
+                    android:src="@drawable/ig_mill_wings_1"
                     android:scaleType="fitEnd" />
             </FrameLayout>
             <FrameLayout
@@ -232,7 +217,7 @@
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:src="@drawable/ig_forest"
+                    android:id="@+id/forest_3"
                     android:visibility="visible"
                     android:scaleType="fitCenter" />
 
@@ -240,8 +225,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/flame"
-                    android:src="@drawable/anim_flame"
-                    android:visibility="visible"
                     android:scaleType="fitCenter"
                     android:layout_marginTop="@dimen/map_hero_margin" />
 
@@ -250,11 +233,22 @@
         </TableRow>
 
     </TableLayout>
+
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/nav"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/map_hero_margin"
         android:clickable="false"
         android:visibility="visible"
         android:background="@drawable/ig_map" />
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:id="@+id/nav"
+        layout="@layout/story_navigation"/>
+
+
 </RelativeLayout>

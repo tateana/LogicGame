@@ -17,12 +17,10 @@ public class Story5InDesert extends StoryModel {
     public Story5InDesert(int level, SoundPlayer soundPlayer, ViewLocationCalculator locationCalc) {
         super(level, soundPlayer, locationCalc);
         textReadingId = R.raw.text01;
-        textId = R.string.text3;
+        textId = R.string.text5;
 
         storyAnimationList = new ArrayList();
-        storyAnimationList.add(new FadeInAnimation(R.id.spider, this, this));
-        storyAnimationList.add(new FadeInAnimation(animKnightViewId, this, this));
-
+        storyAnimationList.add(new FadeInAnimation(animKnightRightViewId, this, this));
     }
 
     @Override
@@ -30,9 +28,9 @@ public class Story5InDesert extends StoryModel {
         characters.put(R.id.wizard, initWizard(context));
         characters.get(R.id.wizard).setVisibility(View.VISIBLE);
 
-        characters.put(R.id.knight, initKnight(context));
-        characters.put(animKnightViewId, initAnimKnight(context, R.id.town));
-
         characters.put(R.id.spider, initSpider(context));
+        characters.get(R.id.spider).setVisibility(View.VISIBLE);
+
+        characters.put(animKnightRightViewId, initAnimRightKnight(context, R.id.spider));
     }
 }

@@ -4,5 +4,4 @@
     <item android:drawable="@drawable/ig_prince_2" android:duration="200" />
     <item android:drawable="@drawable/ig_prince_3" android:duration="1000" />
     <item android:drawable="@drawable/ig_prince_2" android:duration="200" />
-    <item android:drawable="@drawable/ig_prince_1" android:duration="200" />
 </animation-list>

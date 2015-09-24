@@ -2,11 +2,10 @@ package com.home.tateana.logicgame.story;
 
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -14,6 +13,21 @@ import com.home.tateana.logicgame.Game;
 import com.home.tateana.logicgame.R;
 import com.home.tateana.logicgame.gui.SoundPlayer;
 import com.home.tateana.logicgame.gui.ViewLocationCalculator;
+import com.home.tateana.logicgame.story.ClickListener.BadCastleListener;
+import com.home.tateana.logicgame.story.ClickListener.FairyListener;
+import com.home.tateana.logicgame.story.ClickListener.FlameListener;
+import com.home.tateana.logicgame.story.ClickListener.GoodCastleListener;
+import com.home.tateana.logicgame.story.ClickListener.LeftDragonListener;
+import com.home.tateana.logicgame.story.ClickListener.LeftKnightListener;
+import com.home.tateana.logicgame.story.ClickListener.OceanListener;
+import com.home.tateana.logicgame.story.ClickListener.PrinceListener;
+import com.home.tateana.logicgame.story.ClickListener.PrincessListener;
+import com.home.tateana.logicgame.story.ClickListener.RightDragonListener;
+import com.home.tateana.logicgame.story.ClickListener.RightKnightListener;
+import com.home.tateana.logicgame.story.ClickListener.SpiderListener;
+import com.home.tateana.logicgame.story.ClickListener.TownListener;
+import com.home.tateana.logicgame.story.ClickListener.WhaleListener;
+import com.home.tateana.logicgame.story.ClickListener.WizardListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,8 +56,24 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
     private int level;
     protected int textReadingId;
     protected int textId;
-    protected int animDragonViewId = 1;
-    protected int animKnightViewId = 2;
+    protected int animDragonLeftViewId = 1;
+    protected int animKnightRightViewId = 2;
+    protected int animWhaleViewId = 3;
+    protected int animKnightLeftViewId = 4;
+    protected int animDragonRightViewId = 5;
+
+    protected AnimationDrawable currentAnimation;
+    protected Drawable currentStaticDrawable;
+
+    public ImageView getCurrentAnimatedView() {
+        return currentAnimatedView;
+    }
+
+    public void setCurrentAnimatedView(ImageView currentAnimatedView) {
+        this.currentAnimatedView = currentAnimatedView;
+    }
+
+    protected ImageView currentAnimatedView;
 
     public StoryModel(int level, SoundPlayer soundPlayer,  ViewLocationCalculator locationCalc) {
         this.level = level;
@@ -87,6 +117,7 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
         soundPlayer.loadText(textReadingId, context);
         customInit(context);
         state = STATE_READY;
+        onViewIsReady(R.id.town);
     }
 
     protected abstract void customInit(Activity context);
@@ -145,8 +176,15 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
     public void destroy () {
         Log.d(Game.LOG_TAG, "destroy "+this.getClass().toString());
         state = STATE_NEW;
-        storyAnimationList.get(curPos).cancel();
+        areViewsReady = false;
+        isWaitingViews = false;
+        if(curPos > -1) {
+            storyAnimationList.get(curPos).cancel();
+        }
         characters = new HashMap();
+        currentAnimation = null;
+        currentAnimatedView = null;
+        currentStaticDrawable = null;
         soundPlayer.release();
         curPos = -1;
     }
@@ -172,23 +210,29 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
         startNextStoryAnimation();
     }
 
+    protected ImageView initMountains(Activity context) {
+        if (characters.get(R.id.highMountains) != null){
+            return characters.get(R.id.highMountains);
+        }
+        ImageView view = (ImageView) context.findViewById(R.id.highMountains);
+        return view;
+    }
+
+    protected ImageView initForest(Activity context) {
+        if (characters.get(R.id.forest) != null){
+            return characters.get(R.id.forest);
+        }
+        ImageView view = (ImageView) context.findViewById(R.id.forest);
+        return view;
+    }
+
     protected ImageView initPrincess(Activity context) {
         if (characters.get(R.id.princess) != null){
             return characters.get(R.id.princess);
         }
-        final ImageView view = (ImageView) context.findViewById(R.id.princess);
-        soundPlayer.loadSound(R.raw.lala, 3, context);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run princess animation");
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-                soundPlayer.playSound(R.raw.lala);
-            }
-        };
-        view.setOnClickListener(onClickListener);
+        ImageView view = (ImageView) context.findViewById(R.id.princess);
+        view.setImageResource(R.drawable.ig_princess_1);
+        view.setOnClickListener(new PrincessListener(this, context));
         return view;
     }
 
@@ -196,19 +240,9 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
         if (characters.get(R.id.wizard) != null){
             return characters.get(R.id.wizard);
         }
-        final ImageView view = (ImageView) context.findViewById(R.id.wizard);
-        soundPlayer.loadSound(R.raw.devil_laugh, context);
-        View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run wizard animation");
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-                soundPlayer.playSound(R.raw.devil_laugh);
-            }
-        };
-        view.setOnClickListener(clickListener);
+        ImageView view = (ImageView) context.findViewById(R.id.wizard);
+        view.setImageResource(R.drawable.ig_wizard_2);
+        view.setOnClickListener(new WizardListener(this, context));
         return view;
     }
 
@@ -216,19 +250,81 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
         if (characters.get(R.id.flame) != null){
             return characters.get(R.id.flame);
         }
-        final ImageView view = (ImageView) context.findViewById(R.id.flame);
-        soundPlayer.loadSound(R.raw.fire, 2, context);
-        View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run flame animation");
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-                soundPlayer.playSound(R.raw.fire);
-            }
-        };
-        view.setOnClickListener(clickListener);
+        ImageView view = (ImageView) context.findViewById(R.id.flame);
+        view.setImageResource(R.drawable.ig_flame_middle);
+        view.setOnClickListener(new FlameListener(this, context));
+        return view;
+    }
+
+    protected ImageView initSpider(Activity context) {
+        if (characters.get(R.id.spider) != null){
+            return characters.get(R.id.spider);
+        }
+        ImageView view = (ImageView) context.findViewById(R.id.spider);
+        view.setImageResource(R.drawable.ig_spider_seat);
+        soundPlayer.loadSound(R.raw.spider, context);
+        view.setOnClickListener(new SpiderListener(this, context));
+        return view;
+    }
+
+    protected ImageView initFairy(Activity context) {
+        if (characters.get(R.id.fairy) != null){
+            return characters.get(R.id.fairy);
+        }
+        final ImageView view = (ImageView) context.findViewById(R.id.fairy);
+        view.setImageResource(R.drawable.ig_fairy_1);
+        soundPlayer.loadSound(R.raw.magic, context);
+        view.setOnClickListener(new FairyListener(this, context));
+        return view;
+    }
+
+    protected ImageView initGoodCastle(Activity context) {
+        if (characters.get(R.id.goodCastle) != null){
+            return characters.get(R.id.goodCastle);
+        }
+        ImageView view = (ImageView) context.findViewById(R.id.salut);
+        ImageView backgroundView = (ImageView) context.findViewById(R.id.goodCastle);
+        view.setImageDrawable(backgroundView.getDrawable());
+        view.setOnClickListener(new GoodCastleListener(this, context));
+        return view;
+    }
+
+    protected ImageView initBadCastle(Activity context) {
+        if (characters.get(R.id.badCastle) != null){
+            return characters.get(R.id.badCastle);
+        }
+        ImageView view = (ImageView) context.findViewById(R.id.badCastle);
+        view.setOnClickListener(new BadCastleListener(this, context));
+        return view;
+    }
+
+    protected ImageView initTown(Activity context) {
+        if (characters.get(R.id.town) != null){
+            return characters.get(R.id.town);
+        }
+
+        ImageView view = (ImageView) context.findViewById(R.id.town);
+        view.setOnClickListener(new TownListener(this, context));
+        return view;
+    }
+
+    protected ImageView initOcean(Activity context) {
+        if (characters.get(R.id.oceanRight) != null){
+            return characters.get(R.id.oceanRight);
+        }
+
+        ImageView view = (ImageView) context.findViewById(R.id.oceanRight);
+        view.setOnClickListener(new OceanListener(this, context));
+        return view;
+    }
+
+    protected ImageView initPrince(Activity context) {
+        if (characters.get(R.id.prince) != null){
+            return characters.get(R.id.prince);
+        }
+        ImageView view = (ImageView) context.findViewById(R.id.prince);
+        view.setImageResource(R.drawable.ig_prince_1);
+        view.setOnClickListener(new PrinceListener(this, context));
         return view;
     }
 
@@ -236,19 +332,19 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
         if (characters.get(R.id.whale) != null){
             return characters.get(R.id.whale);
         }
-        final ImageView view = (ImageView) context.findViewById(R.id.whale);
-        soundPlayer.loadSound(R.raw.whale, context);
-        View.OnClickListener whaleClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnimationDrawable whaleAnimation = (AnimationDrawable) view.getDrawable();
-                whaleAnimation.stop();
-                whaleAnimation.start();
-                soundPlayer.playSound(R.raw.whale);
-            }
-        };
-        view.setOnClickListener(whaleClickListener);
+        ImageView view = (ImageView) context.findViewById(R.id.whale);
         return view;
+    }
+
+    protected ImageView initAnimWhale(Activity context) {
+        if (characters.get(animWhaleViewId) != null){
+            return characters.get(animWhaleViewId);
+        }
+        ImageView whaleView = initWhale(context);
+        whaleView.setImageResource(R.drawable.ig_whale_tail_down);
+        ImageView animView = initAnimView(context, whaleView, whaleView, animWhaleViewId);
+        animView.setOnClickListener(new WhaleListener(this, context));
+        return animView;
     }
 
     protected ImageView initDragon(Activity context) {
@@ -259,221 +355,35 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
         return view;
     }
 
-    protected ImageView initAnimDragon(Activity context) {
-        if (characters.get(animDragonViewId) != null){
-            return characters.get(animDragonViewId);
+    protected ImageView initAnimRightDragon(Activity context, int locationViewId) {
+        if (characters.get(animDragonRightViewId) != null){
+            return characters.get(animDragonRightViewId);
         }
 
-        final ImageView dragonView = initDragon(context);
+        ImageView dragonView = initDragon(context);
+        dragonView.setImageResource(R.drawable.ig_dragon_right_1);
         dragonView.setVisibility(View.INVISIBLE);
 
-        final RelativeLayout parentLayout = (RelativeLayout) context.findViewById(R.id.main);
-        final ImageView animView = new ImageView(context);
-        animView.setScaleType(dragonView.getScaleType());
-        animView.setImageResource(R.drawable.anim_dragon);
-        animView.setVisibility(View.INVISIBLE);
+        soundPlayer.loadSound(R.raw.dragon_voice, context);
+        ImageView animDragonView = initAnimView(context, characters.get(locationViewId), dragonView, animDragonRightViewId);
+        animDragonView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        animDragonView.setOnClickListener(new RightDragonListener(this, context));
+        return animDragonView;
+    }
 
-        dragonView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @SuppressWarnings("deprecation")
-            @Override
-            public void onGlobalLayout() {
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(dragonView.getWidth(), dragonView.getHeight());
-                parentLayout.addView(animView, params);
-                animView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    public void onGlobalLayout() {
-                        int x = locationCalc.getViewX(dragonView);
-                        int y = locationCalc.getViewY(dragonView);
-                        Log.d(Game.LOG_TAG, "set up x " + String.valueOf(x) +" and y " + String.valueOf(y) + " with width " + String.valueOf(animView.getWidth()) + " and height " + String.valueOf(animView.getHeight()));
-                        animView.layout(x, y, x+animView.getWidth(), y+animView.getHeight());
-                        onViewIsReady(animDragonViewId);
-                        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
-                            animView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        else
-                            animView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                    }
-                });
+    protected ImageView initAnimDragon(Activity context) {
+        if (characters.get(animDragonLeftViewId) != null){
+            return characters.get(animDragonLeftViewId);
+        }
 
-                if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
-                    dragonView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                else
-                    dragonView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            }
-        });
+        ImageView dragonView = initDragon(context);
+        dragonView.setImageResource(R.drawable.ig_dragon_1);
+        dragonView.setVisibility(View.INVISIBLE);
 
         soundPlayer.loadSound(R.raw.dragon_voice, context);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run dragon animation");
-                AnimationDrawable dragonAnimation = (AnimationDrawable) animView.getDrawable();
-                dragonAnimation.stop();
-                dragonAnimation.start();
-                soundPlayer.playSound(R.raw.dragon_voice);
-            }
-        };
-        animView.setOnClickListener(onClickListener);
-
-        return animView;
-    }
-
-    protected ImageView initSpider(Activity context) {
-        if (characters.get(R.id.spider) != null){
-            return characters.get(R.id.spider);
-        }
-        final ImageView view = (ImageView) context.findViewById(R.id.spider);
-        view.setImageResource(R.drawable.anim_spider);
-        soundPlayer.loadSound(R.raw.spider, context);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run spider animation");
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-                soundPlayer.playSound(R.raw.spider);
-            }
-        };
-        view.setOnClickListener(onClickListener);
-        return view;
-    }
-
-    protected ImageView initFairy(Activity context) {
-        if (characters.get(R.id.fairy) != null){
-            return characters.get(R.id.fairy);
-        }
-        final ImageView view = (ImageView) context.findViewById(R.id.fairy);
-        soundPlayer.loadSound(R.raw.magic, context);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run fairy animation");
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-                soundPlayer.playSound(R.raw.magic);
-            }
-        };
-        view.setOnClickListener(onClickListener);
-        return view;
-    }
-
-    protected ImageView initGoodCastle(Activity context) {
-        if (characters.get(R.id.goodCastle) != null){
-            return characters.get(R.id.goodCastle);
-        }
-        final ImageView view = (ImageView) context.findViewById(R.id.salut);
-        ((AnimationDrawable) view.getDrawable()).jumpToCurrentState();
-        soundPlayer.loadSound(R.raw.fanfare, context);
-        View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run Good Castle animation");
-                soundPlayer.playSound(R.raw.fanfare);
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-            }
-        };
-        view.setOnClickListener(clickListener);
-        return view;
-    }
-
-    protected ImageView initBadCastle(Activity context) {
-        if (characters.get(R.id.badCastle) != null){
-            return characters.get(R.id.badCastle);
-        }
-        final ImageView view = (ImageView) context.findViewById(R.id.badCastle);
-        ((AnimationDrawable) view.getDrawable()).jumpToCurrentState();
-        soundPlayer.loadSound(R.raw.storm, context);
-        View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run Bad Castle animation");
-                soundPlayer.playSound(R.raw.storm);
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-            }
-        };
-        view.setOnClickListener(clickListener);
-        return view;
-    }
-
-    protected ImageView initTown(Activity context) {
-        if (characters.get(R.id.town) != null){
-            return characters.get(R.id.town);
-        }
-
-        final ImageView view = (ImageView) context.findViewById(R.id.town);
-        ((AnimationDrawable) view.getDrawable()).jumpToCurrentState();
-        soundPlayer.loadSound(R.raw.cows, context);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run town animation");
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-                soundPlayer.playSound(R.raw.cows);
-            }
-        };
-        view.setOnClickListener(onClickListener);
-
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @SuppressWarnings("deprecation")
-            @Override
-            public void onGlobalLayout() {
-                onViewIsReady(R.id.town);
-                if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
-                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                else
-                    view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            }
-        });
-
-        return view;
-    }
-
-    protected ImageView initOcean(Activity context) {
-        if (characters.get(R.id.oceanRight) != null){
-            return characters.get(R.id.oceanRight);
-        }
-
-        final ImageView view = (ImageView) context.findViewById(R.id.oceanRight);
-        ((AnimationDrawable) view.getDrawable()).jumpToCurrentState();
-        soundPlayer.loadSound(R.raw.sea, context);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run ocean animation");
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-                soundPlayer.playSound(R.raw.sea);
-            }
-        };
-        view.setOnClickListener(onClickListener);
-        return view;
-    }
-
-    protected ImageView initPrince(Activity context) {
-        if (characters.get(R.id.prince) != null){
-            return characters.get(R.id.prince);
-        }
-        final ImageView view = (ImageView) context.findViewById(R.id.prince);
-        soundPlayer.loadSound(R.raw.vot_tak, context);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run prince animation");
-                AnimationDrawable animation = (AnimationDrawable) view.getDrawable();
-                animation.stop();
-                animation.start();
-                soundPlayer.playSound(R.raw.vot_tak);
-            }
-        };
-        view.setOnClickListener(onClickListener);
-        return view;
+        ImageView animDragonView = initAnimView(context, dragonView, dragonView, animDragonLeftViewId);
+        animDragonView.setOnClickListener(new LeftDragonListener(this, context));
+        return animDragonView;
     }
 
     protected ImageView initKnight(Activity context) {
@@ -484,58 +394,73 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
         return view;
     }
 
-    protected ImageView initAnimKnight(Activity context, int locationViewId) {
-        if (characters.get(animKnightViewId) != null){
-            return characters.get(animKnightViewId);
+    protected ImageView initAnimLeftKnight(Activity context, int locationViewId) {
+        if (characters.get(animKnightLeftViewId) != null){
+            return characters.get(animKnightLeftViewId);
         }
-        final ImageView knightView = initKnight(context);
-        final ImageView locationView = characters.get(locationViewId);
+        ImageView knightView = initKnight(context);
+        ImageView locationView = characters.get(locationViewId);
+
+        knightView.setImageResource(R.drawable.ig_knight_1);
+        soundPlayer.loadSound(R.raw.horse, 2, context);
+        ImageView animKnightView = initAnimView(context, locationView, knightView, animKnightLeftViewId);
+        animKnightView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        animKnightView.setOnClickListener(new LeftKnightListener(this, context));
+        return animKnightView;
+    }
+
+    protected ImageView initAnimRightKnight(Activity context, int locationViewId) {
+        if (characters.get(animKnightRightViewId) != null){
+            return characters.get(animKnightRightViewId);
+        }
+        ImageView knightView = initKnight(context);
+        ImageView locationView = knightView;
+        if(locationViewId != R.id.knight) {
+            locationView = characters.get(locationViewId);
+        }
+
+        knightView.setImageResource(R.drawable.ig_knight_right_1);
+        soundPlayer.loadSound(R.raw.horse, 2, context);
+        ImageView animKnightView = initAnimView(context, locationView, knightView, animKnightRightViewId);
+        animKnightView.setOnClickListener(new RightKnightListener(this, context));
+        return animKnightView;
+    }
+
+    protected ImageView initAnimView(Activity context, final ImageView locationView, final ImageView sampleView, final int animViewId) {
         final RelativeLayout parentLayout = (RelativeLayout) context.findViewById(R.id.main);
         final ImageView animView = new ImageView(context);
-        animView.setScaleType(knightView.getScaleType());
-        animView.setImageResource(R.drawable.ig_knight);
+        animView.setScaleType(sampleView.getScaleType());
         animView.setVisibility(View.INVISIBLE);
 
-        knightView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        sampleView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @SuppressWarnings("deprecation")
             @Override
             public void onGlobalLayout() {
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(knightView.getWidth(), knightView.getHeight());
-                parentLayout.addView(animView, params);
+                if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
+                    sampleView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                else
+                    sampleView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(sampleView.getWidth(), sampleView.getHeight());
+                parentLayout.addView(animView, params);
+                animView.setImageDrawable(sampleView.getDrawable());
                 animView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     public void onGlobalLayout() {
-                        int x = locationCalc.getViewX(locationView);
-                        int y = locationCalc.getViewY(locationView);
-                        Log.d(Game.LOG_TAG, "setup knight x " + String.valueOf(x) +" and y " + String.valueOf(y) + " with width " + String.valueOf(animView.getWidth()) + " and height " + String.valueOf(animView.getHeight()));
-                        animView.layout(x, y, x+animView.getWidth(), y+animView.getHeight());
-                        onViewIsReady(animKnightViewId);
                         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
                             animView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                         else
                             animView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+                        int x = locationCalc.getViewX(locationView, animView);
+                        int y = locationCalc.getViewY(locationView);
+
+                        Log.d(Game.LOG_TAG, "setup moving view " + animViewId + " x " + String.valueOf(x) +" and y " + String.valueOf(y) + " with width " + String.valueOf(animView.getWidth()) + " and height " + String.valueOf(animView.getHeight()));
+                        animView.layout(x, y, x + animView.getWidth(), y + animView.getHeight());
+                        onViewIsReady(animViewId);
                     }
                 });
-
-                if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
-                    knightView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                else
-                    knightView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
             }
         });
-
-        soundPlayer.loadSound(R.raw.horse, 3, context);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(Game.LOG_TAG, "run knight animation");
-                /*AnimationDrawable drawableAnimation = (AnimationDrawable) animView.getDrawable();
-                drawableAnimation.stop();
-                drawableAnimation.start();*/
-                soundPlayer.playSound(R.raw.horse);
-            }
-        };
-        animView.setOnClickListener(onClickListener);
 
         return animView;
     }
@@ -546,11 +471,10 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
     }
 
     protected void onViewIsReady(int viewResId){
-        if(characters.containsKey(animKnightViewId) && viewResId!=animKnightViewId) {
-            return;
-        }
 
-        if(characters.containsKey(animDragonViewId) && viewResId!=animDragonViewId) {
+        if(viewResId== animKnightRightViewId || viewResId== animDragonLeftViewId || viewResId == animKnightLeftViewId ) {
+            //just miss elseif block
+        } else if(characters.containsKey(animKnightRightViewId) || characters.containsKey(animDragonLeftViewId) || characters.containsKey(animKnightLeftViewId)) {
             return;
         }
 
@@ -559,6 +483,49 @@ public abstract class StoryModel implements StoryAnimation.StoryAnimationEndList
             isWaitingViews = false;
             start();
         }
+    }
+
+    protected void runAnimation(ImageView view, AnimationDrawable animation) {
+        if(view == currentAnimatedView) {
+            currentAnimation.stop();
+            currentAnimation.start();
+            return;
+        }
+        if(currentAnimatedView != null) {
+            currentAnimation.stop();
+            currentAnimatedView.setImageDrawable(currentStaticDrawable);
+        }
+        currentAnimatedView = view;
+        currentStaticDrawable = view.getDrawable();
+
+        view.setImageDrawable(animation);
+        currentAnimation = (AnimationDrawable)view.getDrawable();
+
+        currentAnimation.start();
+    }
+
+    protected void runAnimation(ImageView view, int animResId) {
+        if(view == currentAnimatedView) {
+            currentAnimation.stop();
+            currentAnimation.start();
+            return;
+        }
+        if(currentAnimatedView != null) {
+            currentAnimation.stop();
+            currentAnimatedView.setImageDrawable(currentStaticDrawable);
+        }
+        currentAnimatedView = view;
+        currentStaticDrawable = view.getDrawable();
+
+        view.setImageResource(animResId);
+        currentAnimation = (AnimationDrawable)view.getDrawable();
+
+        //set static drawable as last frame to stop animation on the same state
+        if(currentStaticDrawable != null) {
+            currentAnimation.addFrame(currentStaticDrawable, 1);
+        }
+
+        currentAnimation.start();
     }
 
     public SoundPlayer getSoundPlayer() {

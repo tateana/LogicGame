@@ -220,4 +220,16 @@ public class QuizActivity extends FragmentActivity implements QuizModel.ViewProv
         model.unAttachDependencies();
         super.onDestroy();
     }
+
+    @Override
+    protected void onStop() {
+        Game.getGame().unbind(this);
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        Game.getGame().bind(this);
+        super.onStart();
+    }
 }

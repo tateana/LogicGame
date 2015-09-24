@@ -10,6 +10,8 @@ import com.home.tateana.logicgame.R;
  */
 public class ViewLocationCalculator {
 
+    private boolean alignRight = false;
+
     public int getViewX(View view) {
         final int[] location = new int[2];
         view.getLocationOnScreen(location);
@@ -18,12 +20,22 @@ public class ViewLocationCalculator {
         return result;
     }
 
+    public int getViewX(View targetView, View alignedView) {
+        int result = getViewX(targetView);
+
+        if(alignRight) {
+            result = result + targetView.getWidth() - alignedView.getWidth();
+        }
+
+        return result;
+    }
+
     public int getViewY(View view) {
         final int[] location = new int[2];
         view.getLocationOnScreen(location);
         int topMargin = (int) view.getContext().getResources().getDimension(R.dimen.activity_vertical_margin);
         int h = view.getHeight();
-        int result = location[1] - h/2;// - topMargin;
+        int result = location[1] - h/3;// - topMargin;
         return result;
     }
 
@@ -34,9 +46,13 @@ public class ViewLocationCalculator {
         int[] endLocation = new int[2];
         endView.getLocationOnScreen(endLocation);
 
-        int leftMargin = (int) startView.getContext().getResources().getDimension(R.dimen.activity_horizontal_margin);
-
         int result = endLocation[0] - startLocation[0];
+
+        if(alignRight) {
+            //int leftMargin = (int) startView.getContext().getResources().getDimension(R.dimen.map_activity_padding);
+            result = result + endView.getWidth() - startView.getWidth();
+        }
+
         return result;
     }
 
@@ -49,5 +65,9 @@ public class ViewLocationCalculator {
 
         int result = endLocation[1] - startLocation[1];
         return result;
+    }
+
+    public void setAlignRight(boolean alignRight) {
+        this.alignRight = alignRight;
     }
 }

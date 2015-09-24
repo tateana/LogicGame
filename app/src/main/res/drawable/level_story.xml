@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/box_green"></item>
+    <item android:right="@dimen/button_padding">
+        <bitmap
+            android:gravity="left"
+            android:src="@drawable/ic_story_text" />
+    </item>
+</layer-list>

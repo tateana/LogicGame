@@ -3,4 +3,5 @@
     <item android:drawable="@drawable/ig_spider_seat" android:duration="500" />
     <item android:drawable="@drawable/ig_spider_stand" android:duration="500" />
     <item android:drawable="@drawable/ig_spider_seat" android:duration="500" />
+    <item android:drawable="@drawable/ig_spider_stand" android:duration="500" />
 </animation-list>

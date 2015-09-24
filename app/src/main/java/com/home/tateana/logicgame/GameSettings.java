@@ -27,7 +27,7 @@ public class GameSettings {
 
 
     private int lastScore = 0;
-    private int availableLevel = Game.LEVEL_TASK_6;
+    private int availableLevel = Game.LEVEL_TASK_10;
     private int passedLevel = Game.LEVEL_TASK_6;
     private DifficultyConfiguration.DifficultyLevel difficultyLevel = DifficultyConfiguration.DifficultyLevel.NORMAL;
     private boolean playMusic = false;
@@ -41,7 +41,7 @@ public class GameSettings {
         this.sharedPreferences = sharedPreferences;
 
         lastRequestedLevel = this.sharedPreferences.getInt(STATE_LAST_LEVEL, lastRequestedLevel);
-        availableLevel = this.sharedPreferences.getInt(STATE_AVAILABLE_LEVEL, availableLevel);
+        //availableLevel = this.sharedPreferences.getInt(STATE_AVAILABLE_LEVEL, availableLevel);
         passedLevel = this.sharedPreferences.getInt(STATE_PASSED_LEVEL, passedLevel);
         playMusic = this.sharedPreferences.getBoolean(STATE_MUSIC, playMusic);
         readText = this.sharedPreferences.getBoolean(STATE_READING, readText);

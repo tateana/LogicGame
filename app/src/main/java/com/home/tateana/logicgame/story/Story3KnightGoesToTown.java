@@ -1,7 +1,6 @@
 package com.home.tateana.logicgame.story;
 
 import android.app.Activity;
-import android.text.method.MovementMethod;
 import android.view.View;
 
 import com.home.tateana.logicgame.R;
@@ -22,8 +21,8 @@ public class Story3KnightGoesToTown extends StoryModel {
 
         storyAnimationList = new ArrayList();
         storyAnimationList.add(new FadeOutAnimation(R.id.prince, this, this));
-        storyAnimationList.add(new FadeInAnimation(animKnightViewId, this, this));
-        storyAnimationList.add(new RelocationAnimation(animKnightViewId, R.id.town, locationCalc, this, this));
+        storyAnimationList.add(new FadeInAnimation(animKnightRightViewId, this, this));
+        storyAnimationList.add(new RideAnimation(animKnightRightViewId, R.id.town, locationCalc, this));
     }
 
     @Override
@@ -35,6 +34,6 @@ public class Story3KnightGoesToTown extends StoryModel {
         characters.get(R.id.wizard).setVisibility(View.VISIBLE);
 
         characters.put(R.id.knight, initKnight(context));
-        characters.put(animKnightViewId, initAnimKnight(context, R.id.knight));
+        characters.put(animKnightRightViewId, initAnimRightKnight(context, R.id.knight));
     }
 }

@@ -20,6 +20,8 @@ public class RelocationAnimation extends StoryAnimation {
     private int  animViewId;
     private int  duration = 5000;
     private int  targetViewId;
+
+    private DrawableAnimationBuilder animationBuilder;
     private ViewLocationCalculator locationCalc;
 
     public RelocationAnimation(int animViewId, int targetViewId, ViewLocationCalculator locationCalc, StoryAnimationCharactersProvider provider) {
@@ -61,18 +63,17 @@ public class RelocationAnimation extends StoryAnimation {
     @Override
     public void end() {
         super.end();
-        ImageView view = provider.getCharacters().get(animViewId);
-        View animView = provider.getCharacters().get(targetViewId);
-        int x = locationCalc.getViewX(animView);
-        int y = locationCalc.getViewY(animView);
-        view.layout(x, y, x + view.getWidth(), y + view.getHeight());
+        ImageView animView = provider.getCharacters().get(animViewId);
+        View targetView = provider.getCharacters().get(targetViewId);
+        int x = locationCalc.getViewX(targetView, animView);
+        int y = locationCalc.getViewY(targetView);
+        animView.layout(x, y, x + animView.getWidth(), y + animView.getHeight());
 
-        Drawable drawable =  view.getDrawable();
+        Drawable drawable =  animView.getDrawable();
         if(drawable instanceof AnimationDrawable) {
             AnimationDrawable animationDrawable = ((AnimationDrawable) drawable);
-            animationDrawable.setOneShot(true);
             animationDrawable.stop();
-            animationDrawable.selectDrawable(0);
+            animView.setImageDrawable(animationDrawable.getFrame(0));
         }
     }
 
@@ -81,8 +82,15 @@ public class RelocationAnimation extends StoryAnimation {
         ImageView view = provider.getCharacters().get(animViewId);
 
         Drawable drawable =  view.getDrawable();
+        AnimationDrawable animationDrawable = null;
         if(drawable instanceof AnimationDrawable) {
-            AnimationDrawable animationDrawable = ((AnimationDrawable) drawable);
+            animationDrawable = ((AnimationDrawable) drawable);
+        } else if(animationBuilder != null) {
+            animationDrawable = animationBuilder.build(view.getContext());
+            view.setImageDrawable(animationDrawable);
+        }
+
+        if(animationDrawable != null) {
             animationDrawable.setOneShot(false);
             animationDrawable.stop();
             animationDrawable.start();
@@ -91,5 +99,9 @@ public class RelocationAnimation extends StoryAnimation {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public void setAnimationBuilder(DrawableAnimationBuilder animationBuilder) {
+        this.animationBuilder = animationBuilder;
     }
 }

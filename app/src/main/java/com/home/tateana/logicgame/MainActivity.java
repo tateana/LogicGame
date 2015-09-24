@@ -2,16 +2,23 @@ package com.home.tateana.logicgame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 import com.home.tateana.logicgame.gui.SoundPlayer;
 import com.home.tateana.logicgame.utils.DifficultyConfiguration;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 
@@ -30,16 +37,24 @@ public class MainActivity extends Activity  {
         soundPlayer = game.getSoundPlayer(this);
 
 
+        Picasso.with(this).load(R.drawable.ig_main_bg_left).into((ImageView)findViewById(R.id.main_bg_left));
+        Picasso.with(this).load(R.drawable.ig_main_bg_right).into((ImageView)findViewById(R.id.main_bg_right));
+
+
         ImageButton startButton = (ImageButton) findViewById(R.id.start);
+        ImageView logoView = (ImageView) findViewById(R.id.logo);
+        Picasso.with(this).load(R.drawable.ig_main_logo).into(logoView);
+
         //startButton.setOnTouchListener(buttonTouchListener);
-        startButton.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               soundPlayer.playButtonClick();
-                                               startLevel(game.getSettings(MainActivity.this).getLastRequestedLevel());
-                                           }
-                                       }
-        );
+        View.OnClickListener startClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                soundPlayer.playButtonClick();
+                startLevel(game.getSettings(MainActivity.this).getLastRequestedLevel());
+            }
+        };
+        startButton.setOnClickListener(startClickListener);
+        logoView.setOnClickListener(startClickListener);
 
 
         ImageButton restartButton = (ImageButton) findViewById(R.id.restart);

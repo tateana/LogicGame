@@ -21,8 +21,10 @@
     </style>
 
     <style name="NavigationButton" parent="Button">
-        <item name="android:layout_width">@dimen/icon_button_size</item>
-        <item name="android:layout_height">@dimen/icon_button_size</item>
+       <!--  <item name="android:layout_width">@dimen/icon_button_size</item>
+        <item name="android:layout_height">@dimen/icon_button_size</item> -->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:scaleType">fitXY</item>
 
@@ -34,19 +36,13 @@
         <item name="android:scaleType">fitCenter</item>
     </style>
 
-    <style name="RoundButton" parent="@android:style/Widget.Button">
+    <style name="ButtonWithoutBg" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textColor">#FFFFFFFF</item>
         <item name="android:textSize">16dip</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:background">@drawable/button_round</item>
+        <item name="android:background">@null</item>
     </style>
-
-    <style name="Widget.Button.Toggle" parent="NavigationButton">
-        <item name="android:background">@drawable/toggle_button</item>
-        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
-    </style>
-
 
     <style name="BorderLayout">
         <item name="android:windowBackground">@drawable/border</item>
@@ -60,16 +56,19 @@
         <item name="android:layout_centerHorizontal">true</item>
     </style>
 
-
+    <style name="LevelNumber" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/text_bright_bg</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/text_bright_stroke</item>
+        <item name="android:shadowDx">5</item>
+        <item name="android:shadowDy">-5</item>
+        <item name="android:shadowRadius">3</item>
+    </style>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:buttonStyle">@style/Button</item>
-        <item name="android:textColor">@color/deep_brown</item>
-
-        <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
-        <item name="android:textOn"></item>
-        <item name="android:textOff"></item>
+        <item name="android:textColor">@color/text_default</item>
 
         <item name="android:alertDialogStyle">@style/MyDialog</item>
     </style>

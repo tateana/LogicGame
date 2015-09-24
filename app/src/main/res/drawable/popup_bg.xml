@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:left="@dimen/popup_shadow_layout_margin">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <gradient
+                android:startColor="#55000000"
+                android:endColor="#00000000"
+                android:angle="90"
+                />
+            <corners android:radius="8dp" />
+
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ig_popup_full_bg"
+        android:left="@dimen/popup_bottom_layout_margin"
+        android:top="@dimen/popup_bottom_layout_margin"
+        android:bottom="@dimen/popup_bottom_layout_margin"
+        android:right="@dimen/popup_bottom_layout_margin" />
+
+</layer-list>

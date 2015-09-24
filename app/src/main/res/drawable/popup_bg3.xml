@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:left="@dimen/popup_shadow_layout_margin">
+        <shape>
+            <gradient
+                android:startColor="#55000000"
+                android:endColor="#00000000"
+                android:angle="90"
+                />
+            <corners android:radius="8dp" />
+
+        </shape>
+    </item>
+
+    <item android:left="@dimen/popup_bottom_layout_margin" android:bottom="@dimen/popup_bottom_layout_margin" android:top="@dimen/popup_bottom_layout_margin" android:right="@dimen/popup_bottom_layout_margin">
+        <shape>
+            <solid android:color="#F4D5A3"/>
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <item android:left="@dimen/popup_bottom_layout_margin" android:top="@dimen/popup_top_layout_margin">
+        <bitmap android:src="@drawable/ig_popup_cut_edge" android:tileMode="disabled" android:gravity="left|top" />
+    </item>
+
+    <item android:left="@dimen/popup_bottom_layout_margin" android:bottom="@dimen/popup_top_layout_margin">
+        <bitmap android:src="@drawable/ig_popup_cut_edge" android:tileMode="disabled" android:gravity="left|bottom" />
+    </item>
+
+    <item android:left="@dimen/popup_top_layout_margin" android:bottom="@dimen/popup_top_layout_margin" android:top="@dimen/popup_top_layout_margin" android:right="@dimen/popup_top_layout_margin">
+        <shape>
+            <solid android:color="#FAEFCE"/>
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+
+
+
+</layer-list>

@@ -7,6 +7,7 @@ import java.util.HashMap;
  */
 public class DifficultyConfiguration {
 
+    private DifficultyLevel difficultyLevel = DifficultyLevel.NORMAL;
     HashMap<DifficultyLevel, Configuration> configurations;
 
     public DifficultyConfiguration() {
@@ -15,8 +16,6 @@ public class DifficultyConfiguration {
         configurations.put(DifficultyLevel.NORMAL, new Configuration(2, 9, 10));
         configurations.put(DifficultyLevel.HARD, new Configuration(3, 9, 10));
     }
-
-    private DifficultyLevel difficultyLevel = DifficultyLevel.NORMAL;
 
     public int numberOfTasks() {
         return configurations.get(difficultyLevel).numberOfTasks;
@@ -28,10 +27,6 @@ public class DifficultyConfiguration {
 
     public int maxKnownDigit() {
         return configurations.get(difficultyLevel).maxKnownDigit;
-    }
-
-    public DifficultyLevel getDifficultyLevel() {
-        return difficultyLevel;
     }
 
     public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
